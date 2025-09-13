@@ -1,0 +1,22 @@
+# Visual Studio dosyaları
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Derleme çıktıları
+bin/
+obj/
+*.exe
+*.pdb
+*.dll
+
+# NuGet paketleri
+packages/
+*.nupkg
+
+# Diğer geçici dosyalar
+*.cache
+*.log
+*.bak
