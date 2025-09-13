@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDbEgitim.Entities;
+using MongoDbEgitim.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,19 @@ namespace MongoDbEgitim
         public Form1()
         {
             InitializeComponent();
+        }
+        CustomerOperations customerOperations= new CustomerOperations();
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var customner = new Customer()
+            {
+                CustomerName = txtCustomerName.Text,
+                CustomerSurname = txtCustomerSurname.Text,
+                CustomerBalance = decimal.Parse(txtAccountBalance.Text),
+                ShoppingCount = int.Parse(txtShopPrice.Text),
+            };
+            customerOperations.AddCustomer(customner);
+            MessageBox.Show("Ekleme işlemi başarıyla gerçekleşti.","Ekleme!!!",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
