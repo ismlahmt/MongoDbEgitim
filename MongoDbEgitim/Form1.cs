@@ -31,5 +31,45 @@ namespace MongoDbEgitim
             customerOperations.AddCustomer(customner);
             MessageBox.Show("Ekleme işlemi başarıyla gerçekleşti.","Ekleme!!!",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void txtAccountBalance_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnList_Click(object sender, EventArgs e)
+        {
+            List<Customer> customers = customerOperations.GetAllCustomer();
+            dataGridView1.DataSource= customers;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string customerId = txtCustomerId.Text;
+            customerOperations.DeleteCustomer(customerId);
+            MessageBox.Show("Müşteri Başarıyla Silindi.");
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string id = txtCustomerId.Text;
+            var updateCustomer = new Customer()
+            {
+                CustomerName= txtCustomerName.Text,
+                CustomerSurname= txtCustomerSurname.Text,
+                CustomerBalance = decimal.Parse(txtAccountBalance.Text),
+                ShoppingCount = int.Parse(txtShopPrice.Text),
+                CustomerId = id
+            };
+            customerOperations.UpdateCustomer(updateCustomer);
+            MessageBox.Show("Müşteri Başarıyla Güncellendi");
+        }
+
+        private void btnGetById_Click(object sender, EventArgs e)
+        {
+            string id = txtCustomerId.Text;
+            Customer customers = customerOperations.GetCustomerById(id);
+            dataGridView1.DataSource = new List<Customer> { customers};
+        }
     }
 }
